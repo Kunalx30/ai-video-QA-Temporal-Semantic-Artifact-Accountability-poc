@@ -1,0 +1,13 @@
+{
+  "fixture_id": "corrupted_metadata",
+  "filename": "corrupted_metadata.mp4",
+  "video_path": "mock_data/media/corrupted_metadata.mp4",
+  "prompt": "A test video with corrupted media container.",
+  "defect": "Corrupted media container",
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "failure_reason": "Corrupted video container streams unparseable by ffprobe",
+  "reason_code": "TECHNICAL_INVALID_MEDIA",
+  "created_by": "member8_fixture_generator",
+  "seed": 42
+}

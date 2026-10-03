@@ -1,0 +1,5 @@
+{
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "reason_code": "TEMPORAL_FREEZE"
+}

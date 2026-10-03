@@ -1,0 +1,17 @@
+{
+  "fixture_id": "duplicate_frames",
+  "filename": "duplicate_frames.mp4",
+  "video_path": "mock_data/media/duplicate_frames.mp4",
+  "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+  "defect": "Duplicate frames",
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "failure_reason": "Repeated identical consecutive frames",
+  "reason_code": "TEMPORAL_DUPLICATE_FRAMES",
+  "created_by": "member8_fixture_generator",
+  "seed": 42,
+  "frame_count": 60,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360
+}

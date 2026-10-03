@@ -1,0 +1,5 @@
+{
+  "video_path": "mock_data/media/corrupted_metadata.mp4",
+  "prompt": "A test video with corrupted media container.",
+  "video_id": "VID_CORRUPTED"
+}

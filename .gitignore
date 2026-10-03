@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Caches and test artifacts
+.pytest_cache/
+.cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.tmp
+*.pdf
+temp/
+tmp/
+
+# Environment configurations
+.env
+.env.*
+
+# Machine Learning models and checkpoints
+models/
+checkpoints/
+huggingface/
+
+# Operating System files
+.DS_Store
+Thumbs.db

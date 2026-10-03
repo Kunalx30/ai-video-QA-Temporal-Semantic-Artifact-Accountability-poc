@@ -1,0 +1,17 @@
+{
+  "fixture_id": "resolution_change",
+  "filename": "resolution_change.mp4",
+  "video_path": "mock_data/media/resolution_change.mp4",
+  "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+  "defect": "Resolution / scaling artifact",
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "failure_reason": "Pixelated letterbox resolution artifact",
+  "reason_code": "ARTIFACT_RESOLUTION_CHANGE",
+  "created_by": "member8_fixture_generator",
+  "seed": 42,
+  "frame_count": 60,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360
+}

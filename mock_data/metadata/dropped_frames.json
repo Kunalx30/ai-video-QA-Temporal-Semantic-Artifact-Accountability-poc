@@ -1,0 +1,17 @@
+{
+  "fixture_id": "dropped_frames",
+  "filename": "dropped_frames.mp4",
+  "video_path": "mock_data/media/dropped_frames.mp4",
+  "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+  "defect": "Dropped frames / abrupt jump",
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "failure_reason": "Abrupt frame discontinuity / dropped frames",
+  "reason_code": "TEMPORAL_FRAME_DROP",
+  "created_by": "member8_fixture_generator",
+  "seed": 42,
+  "frame_count": 45,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360
+}

@@ -1,0 +1,5 @@
+{
+  "expected_decision": "HUMAN_REVIEW",
+  "expected_status": "WARN",
+  "reason_code": "ARTIFACT_TEXT_OVERLAY"
+}

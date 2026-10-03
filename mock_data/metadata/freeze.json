@@ -1,0 +1,17 @@
+{
+  "fixture_id": "freeze",
+  "filename": "freeze.mp4",
+  "video_path": "mock_data/media/freeze.mp4",
+  "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+  "defect": "Frozen sequence",
+  "expected_decision": "AUTO_RETRY",
+  "expected_status": "FAIL",
+  "failure_reason": "Extended frozen sequence",
+  "reason_code": "TEMPORAL_FREEZE",
+  "created_by": "member8_fixture_generator",
+  "seed": 42,
+  "frame_count": 60,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360
+}

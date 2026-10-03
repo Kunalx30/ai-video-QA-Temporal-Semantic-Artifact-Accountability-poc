@@ -1,0 +1,11 @@
+{
+  "video_path": "mock_data/media/resolution_change.mp4",
+  "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+  "video_id": "VID_RESOLUTION_CHANGE",
+  "metadata": {
+    "generation_id": "GEN_RESOLUTION_CHANGE",
+    "fps": 24.0,
+    "width": 640,
+    "height": 360
+  }
+}
