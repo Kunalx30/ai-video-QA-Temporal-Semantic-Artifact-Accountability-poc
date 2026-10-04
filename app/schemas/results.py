@@ -28,6 +28,7 @@ class ReasonCode(str, Enum):
     TECHNICAL_METADATA_MISMATCH = "TECHNICAL_METADATA_MISMATCH"
     TECHNICAL_FILE_NOT_FOUND = "TECHNICAL_FILE_NOT_FOUND"
     TECHNICAL_EXECUTION_ERROR = "TECHNICAL_EXECUTION_ERROR"
+    PROMPT_ASPECT_RATIO_MISMATCH = "PROMPT_ASPECT_RATIO_MISMATCH"
 
     # Temporal
     TEMPORAL_FLICKER = "TEMPORAL_FLICKER"
@@ -72,6 +73,7 @@ class TechnicalResult(ComponentResult):
     video_codec: Optional[str] = Field(default=None, description="Detected video codec")
     has_audio: Optional[bool] = Field(default=None, description="Whether audio stream is present")
     frame_count: Optional[int] = Field(default=None, description="Detected or counted frames")
+    aspect_ratio: Optional[str] = Field(default=None, description="Detected video aspect ratio (e.g. 16:9, 9:16, 1:1)")
 
 
 class TemporalResult(ComponentResult):

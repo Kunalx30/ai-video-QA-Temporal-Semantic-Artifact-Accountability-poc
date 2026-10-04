@@ -87,3 +87,4 @@ def test_reason_codes_and_decision_types():
     assert DecisionType.HUMAN_REVIEW.value == "HUMAN_REVIEW"
     assert ReasonCode.TEMPORAL_FLICKER.value == "TEMPORAL_FLICKER"
     assert ReasonCode.ARTIFACT_BLACK_FRAME.value == "ARTIFACT_BLACK_FRAME"
+    assert ReasonCode.PROMPT_ASPECT_RATIO_MISMATCH.value == "PROMPT_ASPECT_RATIO_MISMATCH"

@@ -63,7 +63,7 @@ def evaluate_video(
         decision_md = f"## 🔵 FINAL DECISION: **{dec}**\n*Ambiguous or elevated risk detected. Manual verification recommended.*"
 
     # 2. Components
-    tech_info = f"**Status: {report.technical.status.value}**\n- Res: {report.technical.width}x{report.technical.height}\n- FPS: {report.technical.fps}\n- Codec: {report.technical.video_codec}\n- Duration: {report.technical.duration_seconds}s"
+    tech_info = f"**Status: {report.technical.status.value}**\n- Res: {report.technical.width}x{report.technical.height}\n- Ratio: {report.technical.aspect_ratio or 'N/A'}\n- FPS: {report.technical.fps}\n- Codec: {report.technical.video_codec}\n- Duration: {report.technical.duration_seconds}s"
     temp_info = f"**Status: {report.temporal.status.value}**\n- Score: {report.temporal.score}\n- Flicker: {report.temporal.flicker_score}\n- Duplicate Ratio: {report.temporal.duplicate_ratio}\n- Freeze Ratio: {report.temporal.freeze_ratio}\n- Smoothness: {report.temporal.motion_smoothness}"
     sem_info = f"**Status: {report.semantic.status.value}**\n- Similarity: {report.semantic.similarity_score}\n- Sample Scores: {report.semantic.sampled_frame_scores}"
     art_info = f"**Status: {report.artifacts.status.value}**\n- Black Frames: {report.artifacts.black_frame_count}\n- Blur Score: {report.artifacts.blur_score}\n- Decode Errors: {report.artifacts.decode_errors_count}"

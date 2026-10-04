@@ -15,6 +15,7 @@ class TechnicalConfig(BaseModel):
     max_fps: float = 120.0
     min_duration_seconds: float = 0.5
     allowed_codecs: List[str] = Field(default_factory=lambda: ["h264", "hevc", "vp9", "av1", "prores", "mpeg4"])
+    aspect_ratio_tolerance: float = 0.02
 
 
 class TemporalConfig(BaseModel):

@@ -344,6 +344,16 @@ print("FPS      :", result.evidence.get("fps"))          # 24.0
 print("Resolution:", f"{result.evidence.get('width')}x{result.evidence.get('height')}")
 ```
 
+#### Prompt Aspect Ratio Validation
+Compares the aspect ratio explicitly requested in the generation prompt against the actual video dimensions:
+- **Example:**
+  - Prompt: `16:9`
+  - Video: `720x1280` (9:16)
+  - Result: `FAIL`
+  - Reason: `PROMPT_ASPECT_RATIO_MISMATCH`
+- If no aspect ratio is specified in the prompt, no mismatch is flagged (`PASS`).
+
+
 ---
 
 ### C. Temporal Continuity & Shot Boundaries (`app.temporal`)
@@ -696,6 +706,7 @@ Deterministic machine-readable reason codes emitted by component checks:
 | `TECHNICAL_METADATA_MISMATCH` | Technical | `HUMAN_REVIEW` | Actual media properties differ from generation manifest metadata. |
 | `TECHNICAL_FILE_NOT_FOUND` | Technical | `AUTO_RETRY` | Media file path does not exist on disk. |
 | `TECHNICAL_EXECUTION_ERROR` | Technical | `AUTO_RETRY` | Internal inspection error during ffprobe extraction. |
+| `PROMPT_ASPECT_RATIO_MISMATCH` | Technical | `HUMAN_REVIEW` | Prompt requested aspect ratio differs from actual video aspect ratio. |
 | `TEMPORAL_FLICKER` | Temporal | `AUTO_RETRY` | Rapid luminance variance exceeds acceptable threshold. |
 | `TEMPORAL_DUPLICATE_FRAMES` | Temporal | `AUTO_RETRY` | Excessive consecutive duplicate frames detected (stutter). |
 | `TEMPORAL_FREEZE` | Temporal | `AUTO_RETRY` | Video motion freezes for more than 6 consecutive frames. |

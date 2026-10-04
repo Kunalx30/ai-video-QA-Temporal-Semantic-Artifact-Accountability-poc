@@ -274,3 +274,43 @@ Per instruction, **no production code, detectors, thresholds, or configuration f
    - **Change 1**: Implement shot-boundary / scene-cut awareness in `app/temporal/frame_drop.py` so multi-shot videos do not trigger false frame-drop failures.
    - **Change 2**: Download and cache real CLIP weights so semantic QA evaluates genuine text-image similarity instead of returning `0.25`.
    - **Change 3**: Add prompt aspect ratio validation in `app/technical/ffprobe_validator.py` to catch mismatches like requested 16:9 vs. generated 9:16 portrait.
+
+---
+
+## 17. Decision Engine Validation
+
+Comprehensive evaluation of the `DecisionEngine` policy routing and final decision verification across `PASS`, `AUTO_RETRY`, and `HUMAN_REVIEW` outcomes:
+
+### A. PASS Test
+- **Input Condition**: All QA components pass cleanly (`Technical=PASS`, `Temporal=PASS`, `Semantic=PASS`, `Artifacts=PASS`, `Provenance=PASS`).
+- **Real Video Subject**: `hitech_girl.mp4` evaluated with valid prompt `"a girl in hyderabad is walking with her dog in 9:16 portrait"`.
+- **Result**:
+  - `Decision`: **`PASS`**
+  - `Reason Codes`: `[]` (no blocking reason codes)
+  - `Traceability`: Component statuses verified clean across all 5 modules.
+
+### B. AUTO_RETRY Test
+- **Input Condition**: Injection of retry-eligible machine-detectable defect (`TEMPORAL_FRAME_DROP`, `TECHNICAL_INVALID_MEDIA`, `ARTIFACT_BLACK_FRAME`, `ARTIFACT_BLUR`, or `SEMANTIC_LOW_ALIGNMENT`).
+- **Result**:
+  - `Decision`: **`AUTO_RETRY`**
+  - `Reason Codes`: Directly attributed to the responsible failure code (e.g. `['TEMPORAL_FRAME_DROP']`).
+  - `Traceability`: 100% agreement between component failure and top-level retry action.
+
+### C. HUMAN_REVIEW Test
+- **Input Condition**: Ambiguous, warning, or security defect conditions (`SEMANTIC_UNCERTAIN`, `ARTIFACT_TEXT_OVERLAY`, `TECHNICAL_METADATA_MISMATCH`, `PROVENANCE_HASH_FAILURE`, or `PROMPT_ASPECT_RATIO_MISMATCH`).
+- **Real Video Subject**: `hitech_girl.mp4` evaluated with 16:9 prompt (`"a girl in hyderabad in 16:9 widescreen"`).
+- **Result**:
+  - `Decision`: **`HUMAN_REVIEW`**
+  - `Reason Codes`: `['PROMPT_ASPECT_RATIO_MISMATCH']`
+  - `Traceability`: Flows through the existing technical-failure policy under default `uncertain_policy="HUMAN_REVIEW"`.
+
+### D. Multiple-Failure Test
+- **Input Condition**: Multiple simultaneous component failures (`TECHNICAL_INVALID_MEDIA` [retry-eligible] + `SEMANTIC_UNCERTAIN` [review-eligible] + `ARTIFACT_TEXT_OVERLAY` [review-eligible]).
+- **Result**:
+  - `Decision`: **`AUTO_RETRY`** (follows existing policy hierarchy where actionable machine-detectable defects take retry precedence).
+  - `Reason Codes`: `['TECHNICAL_INVALID_MEDIA', 'SEMANTIC_UNCERTAIN', 'ARTIFACT_TEXT_OVERLAY']` (full end-to-end traceability preserved without loss of secondary warning codes).
+
+### E. Final Pytest Verification Result
+- **Full Suite**: All unit, integration, calibration, aspect-ratio, and decision regression test suites executed via `python -m pytest -q`.
+- **Test Outcomes**: All tests passing cleanly (100% pass rate, 0 failures, 0 regressions).
+

@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional, Tuple
 from app.config import QAConfig, TechnicalConfig
 from app.schemas.input import GenerationMetadata
 from app.schemas.results import CheckStatus, ReasonCode, TechnicalResult
+from app.technical.aspect_ratio import validate_aspect_ratio
 
 
 def parse_fps(fps_str: str) -> Optional[float]:
@@ -65,6 +66,7 @@ class FFprobeValidator:
         self,
         video_path: str | Path,
         expected_meta: Optional[GenerationMetadata] = None,
+        prompt: Optional[str] = None,
     ) -> TechnicalResult:
         p = Path(video_path)
         if not p.exists() or not p.is_file():
@@ -172,6 +174,29 @@ class FFprobeValidator:
                 reason_codes.append(ReasonCode.TECHNICAL_METADATA_MISMATCH)
                 evidence["metadata_mismatches"] = mismatches
 
+        # Check aspect ratio against generation prompt if dimensions are valid
+        detected_ar: Optional[str] = None
+        if width and height and width > 0 and height > 0:
+            effective_prompt = prompt or (
+                expected_meta.extra.get("prompt") if expected_meta and expected_meta.extra else None
+            )
+            ar_evidence, ar_matched = validate_aspect_ratio(
+                width=width,
+                height=height,
+                prompt=effective_prompt,
+                tolerance=self.config.aspect_ratio_tolerance,
+            )
+            evidence["aspect_ratio_evidence"] = ar_evidence
+            detected_ar = ar_evidence.get("actual_aspect_ratio")
+            if not ar_matched:
+                is_fail = True
+                reason_codes.append(ReasonCode.PROMPT_ASPECT_RATIO_MISMATCH)
+                evidence["aspect_ratio_error"] = (
+                    f"Prompt requested aspect ratio '{ar_evidence['requested_aspect_ratio']}' "
+                    f"({ar_evidence['expected_ratio']}), but actual video aspect ratio is "
+                    f"'{ar_evidence['actual_aspect_ratio']}' ({ar_evidence['actual_ratio']}, {width}x{height})"
+                )
+
         status = CheckStatus.FAIL if is_fail else (CheckStatus.WARN if is_warn else CheckStatus.PASS)
 
         return TechnicalResult(
@@ -183,6 +208,7 @@ class FFprobeValidator:
             video_codec=video_codec,
             has_audio=has_audio,
             frame_count=nb_frames,
+            aspect_ratio=detected_ar,
             evidence=evidence,
             reason_codes=reason_codes,
         )

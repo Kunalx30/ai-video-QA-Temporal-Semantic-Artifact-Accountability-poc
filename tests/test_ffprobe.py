@@ -49,3 +49,16 @@ def test_metadata_mismatch_triggers_warning():
     assert result.status == CheckStatus.WARN
     assert ReasonCode.TECHNICAL_METADATA_MISMATCH in result.reason_codes
     assert "metadata_mismatches" in result.evidence
+
+
+def test_aspect_ratio_mismatch_fails_technical_validation():
+    validator = FFprobeValidator()
+    # good.mp4 is 640x360 (16:9), prompt requests 9:16 vertical
+    result = validator.validate("mock_data/media/good.mp4", prompt="A vertical 9:16 mobile clip")
+
+    assert result.status == CheckStatus.FAIL
+    assert ReasonCode.PROMPT_ASPECT_RATIO_MISMATCH in result.reason_codes
+    assert result.aspect_ratio == "16:9"
+    assert result.evidence["aspect_ratio_evidence"]["matched"] is False
+    assert result.evidence["aspect_ratio_evidence"]["requested_aspect_ratio"] == "9:16"
+

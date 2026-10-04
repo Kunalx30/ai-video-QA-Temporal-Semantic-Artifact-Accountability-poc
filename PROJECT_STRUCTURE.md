@@ -283,9 +283,9 @@ Video Accountability/
 - **Main Classes**:
   - `CheckStatus` (Enum): `PASS`, `FAIL`, `WARN`, `ERROR`, `SKIPPED`.
   - `DecisionType` (Enum): `PASS`, `AUTO_RETRY`, `HUMAN_REVIEW`.
-  - `ReasonCode` (Enum): 19 stable codes covering Technical, Temporal, Semantic, Artifact, and Provenance failures.
+  - `ReasonCode` (Enum): 20 stable codes covering Technical, Temporal, Semantic, Artifact, and Provenance failures (including `PROMPT_ASPECT_RATIO_MISMATCH`).
   - `ComponentResult`: Base class with `status`, `score`, `evidence`, `reason_codes`.
-  - `TechnicalResult`: Subclasses `ComponentResult` adding `width`, `height`, `fps`, `duration_seconds`, `video_codec`, `has_audio`, `frame_count`.
+  - `TechnicalResult`: Subclasses `ComponentResult` adding `width`, `height`, `fps`, `duration_seconds`, `video_codec`, `has_audio`, `frame_count`, `aspect_ratio`.
   - `TemporalResult`: Subclasses `ComponentResult` adding `flicker_score`, `duplicate_ratio`, `freeze_ratio`, `motion_smoothness`.
   - `SemanticResult`: Subclasses `ComponentResult` adding `similarity_score`, `sampled_frame_scores`.
   - `ArtifactResult`: Subclasses `ComponentResult` adding `black_frame_count`, `blur_score`, `decode_errors_count`.

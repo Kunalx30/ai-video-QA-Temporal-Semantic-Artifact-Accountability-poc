@@ -60,7 +60,7 @@ class VideoQAPipeline:
         vid = prov_result.video_id
 
         # 2. Technical Validation
-        tech_result = self.technical_validator.validate(p, expected_meta=metadata)
+        tech_result = self.technical_validator.validate(p, expected_meta=metadata, prompt=prompt)
 
         # Early exit if file unreadable / technical validation hard failed
         if tech_result.status == CheckStatus.FAIL:
