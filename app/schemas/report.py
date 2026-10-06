@@ -27,3 +27,14 @@ class QAReport(BaseModel):
     provenance: ProvenanceResult = Field(..., description="Cryptographic provenance and audit identity")
     reason_codes: List[ReasonCode] = Field(default_factory=list, description="Aggregated reason codes across all checks")
     qa_version: str = Field(default=__version__, description="QA engine version string")
+
+    def to_contract(
+        self,
+        clip_id: Optional[str] = None,
+        qa_id: Optional[str] = None,
+        evidence_files: Optional[List[str]] = None,
+    ):
+        """Export to Day 2 shared QAResult contract."""
+        from app.schemas.contract import QAResult
+        return QAResult.from_qa_report(self, clip_id=clip_id, qa_id=qa_id, evidence_files=evidence_files)
+

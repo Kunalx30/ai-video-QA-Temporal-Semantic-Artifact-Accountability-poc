@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH24_T2V_01",
+  "shot_id": "S01_SH24",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_CLEAN_024.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 66,
+  "status": "OK",
+  "failure_reason": null,
+  "checksum_sha256": "2b49ff5d4cccac0a340c88632d6229fcb026772078591f195b94dd993f2dc009"
+}

@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_ART_010",
+  "expected_decision": "AUTO_RETRY",
+  "expected_reason_codes": [
+    "TECHNICAL_INVALID_MEDIA"
+  ]
+}

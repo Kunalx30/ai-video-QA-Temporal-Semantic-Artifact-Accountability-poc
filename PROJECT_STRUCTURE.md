@@ -97,6 +97,7 @@ Video Accountability/
 │   │
 │   ├── schemas/
 │   │   ├── __init__.py
+│   │   ├── contract.py
 │   │   ├── input.py
 │   │   ├── report.py
 │   │   └── results.py
@@ -123,6 +124,12 @@ Video Accountability/
 ├── demo/
 │   ├── __init__.py
 │   └── gradio_app.py
+│
+├── qa_harness/
+│   ├── __init__.py
+│   ├── comparator.py
+│   ├── report.py
+│   └── runner.py
 │
 ├── mock_data/
 │   ├── __init__.py
@@ -184,8 +191,11 @@ Video Accountability/
 │
 ├── tests/
 │   ├── test_artifacts.py
+│   ├── test_aspect_ratio.py
 │   ├── test_calibration.py
+│   ├── test_clean_controls.py
 │   ├── test_cli.py
+│   ├── test_contract.py
 │   ├── test_decision.py
 │   ├── test_environment.py
 │   ├── test_ffprobe.py
@@ -194,16 +204,19 @@ Video Accountability/
 │   ├── test_gradio.py
 │   ├── test_pipeline.py
 │   ├── test_provenance.py
+│   ├── test_qa_harness.py
 │   ├── test_real_smoke.py
 │   ├── test_schemas.py
 │   ├── test_semantic.py
 │   └── test_temporal.py
 │
-├── AGENT_member8_QA.md
 ├── calibration_report.md
+├── DAY2.md
 ├── pyproject.toml
+├── QA_REPORT.md
 ├── README.md
-└── requirements.txt
+├── requirements.txt
+└── TEST_REPORT.md
 ```
 
 ---

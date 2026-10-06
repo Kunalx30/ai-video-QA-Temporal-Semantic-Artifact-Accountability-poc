@@ -1,0 +1,46 @@
+{
+  "fixture_id": "corrupted_metadata",
+  "clip_id": "CLIP_CORRUPTED_METADATA",
+  "video_path": "mock_data/media/corrupted_metadata.mp4",
+  "decision": "AUTO_RETRY",
+  "reason_codes": [
+    "TECHNICAL_INVALID_MEDIA"
+  ],
+  "technical": {
+    "status": "FAIL",
+    "width": null,
+    "height": null,
+    "fps": null,
+    "duration_seconds": null,
+    "codec": null,
+    "evidence": {
+      "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 000001e98dc54000] moov atom not found\nmock_data\\media\\corrupted_metadata.mp4: Invalid data found when processing input"
+    }
+  },
+  "temporal": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed; frames could not be extracted"
+    }
+  },
+  "artifacts": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed"
+    }
+  },
+  "semantic": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed"
+    }
+  },
+  "provenance": {
+    "sha256": "7f5cb74378213657d0dafc4e41918e577c0c9b5a8a8529cf3ff0b3e5fa074c4b",
+    "video_id": "CLIP_CORRUPTED_METADATA",
+    "qa_run_id": "QA_1791260531_22DD044B"
+  }
+}

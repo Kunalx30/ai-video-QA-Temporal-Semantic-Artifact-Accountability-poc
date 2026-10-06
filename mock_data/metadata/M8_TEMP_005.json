@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH05_T2V_02",
+  "shot_id": "S01_SH05",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TEMP_005.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 47,
+  "status": "OK",
+  "failure_reason": "Rapid alternating luminance changes",
+  "checksum_sha256": "e3b5b9b871e0ea2129ccd3b9e03d59609ff806b9070e6826f417214b452a15a2"
+}

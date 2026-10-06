@@ -783,5 +783,114 @@ Comprehensive validation reports documenting detector calibration on real-world 
    - Documents the integration of real OpenAI CLIP ViT-B/32 semantic evaluation, replacing the silent `0.25` deterministic baseline.
    - Demonstrates 138% empirical score separation between matching Prompt A (`0.3161`, `PASS`) and negative Prompt B (`0.1327`, `FAIL`).
 
-3. **[calibration_report.md](file:///c:/Video%20Accountobilty/calibration_report.md):**
-   - Full 11-fixture calibration matrix measuring 100% classification accuracy across all injected defect types.
+3. **[calibration_report.md](file:///c:/Video%20Accountabilty/calibration_report.md):**
+   - Full calibration matrix measuring 100% classification accuracy across all injected defect types and 0.0% clean false-reject rate.
+
+---
+
+## Reuse from Day 1
+
+The following verified Day 1 components and modules are preserved and reused in Day 2:
+
+- **Technical Video Validation:** [app/technical/ffprobe_validator.py](file:///c:/Video%20Accountabilty/app/technical/ffprobe_validator.py) and [app/technical/aspect_ratio.py](file:///c:/Video%20Accountabilty/app/technical/aspect_ratio.py)
+- **Temporal Quality Detectors:**
+  - Duplicate Frames: [app/temporal/duplicate_frames.py](file:///c:/Video%20Accountabilty/app/temporal/duplicate_frames.py)
+  - Dropped Frames: [app/temporal/frame_drop.py](file:///c:/Video%20Accountabilty/app/temporal/frame_drop.py)
+  - Luminance Flicker: [app/temporal/flicker.py](file:///c:/Video%20Accountabilty/app/temporal/flicker.py)
+  - Freeze Sequences: [app/temporal/freeze_detection.py](file:///c:/Video%20Accountabilty/app/temporal/freeze_detection.py)
+  - Motion / Velocity Jumps: [app/temporal/motion_anomaly.py](file:///c:/Video%20Accountabilty/app/temporal/motion_anomaly.py)
+  - Shot Boundary & Optical Flow: [app/temporal/shot_boundary.py](file:///c:/Video%20Accountabilty/app/temporal/shot_boundary.py), [app/temporal/optical_flow.py](file:///c:/Video%20Accountabilty/app/temporal/optical_flow.py)
+- **Visual Artifact Detectors:**
+  - Black Frames: [app/artifacts/black_frame.py](file:///c:/Video%20Accountabilty/app/artifacts/black_frame.py)
+  - Blur Estimation: [app/artifacts/blur.py](file:///c:/Video%20Accountabilty/app/artifacts/blur.py)
+  - Resolution & Scaling Changes: [app/artifacts/resolution_change.py](file:///c:/Video%20Accountabilty/app/artifacts/resolution_change.py)
+  - Artificial Text Overlay / Watermark: [app/artifacts/text_overlay.py](file:///c:/Video%20Accountabilty/app/artifacts/text_overlay.py)
+  - Decode Glitches & Stream Errors: [app/artifacts/decode_errors.py](file:///c:/Video%20Accountabilty/app/artifacts/decode_errors.py)
+- **Semantic Prompt Alignment:** [app/semantic/clip_checker.py](file:///c:/Video%20Accountabilty/app/semantic/clip_checker.py) and [app/semantic/prompt_alignment.py](file:///c:/Video%20Accountabilty/app/semantic/prompt_alignment.py) using OpenAI CLIP ViT-B/32
+- **Provenance & Accountability:** [app/provenance/checksum.py](file:///c:/Video%20Accountabilty/app/provenance/checksum.py), [app/provenance/identity.py](file:///c:/Video%20Accountabilty/app/provenance/identity.py), [app/provenance/signing.py](file:///c:/Video%20Accountabilty/app/provenance/signing.py)
+- **Deterministic Decision Engine:** [app/decision/decision_engine.py](file:///c:/Video%20Accountabilty/app/decision/decision_engine.py) mapping component evidence to `PASS`, `AUTO_RETRY`, and `HUMAN_REVIEW`
+- **Frame Extraction:** [app/media/frame_extractor.py](file:///c:/Video%20Accountabilty/app/media/frame_extractor.py)
+- **Pipeline Orchestrator:** [app/pipeline.py](file:///c:/Video%20Accountabilty/app/pipeline.py)
+
+---
+
+## Day 2 Implementation
+
+### 1. Day 2 Objective
+Day 2 transforms Member 8's calibrated QA detectors into a complete, deterministic, project-style regression test harness. It establishes shared contracts (`ClipMetadata` and `QAResult`), a labelled 59-fixture regression suite (including 24 defect fixtures and 24 matching clean controls), automated actual vs. expected result comparison, evidence generation, threshold calibration, and structured markdown reports.
+
+### 2. Shared Contracts (`app/schemas/contract.py`)
+- **`ClipMetadata` (Input Contract):**
+  Standardized Pydantic data model containing all 19 mandatory fields:
+  `clip_id`, `shot_id`, `mode` (`T2V` / `I2V`), `source_type` (`MOCK` / `REAL`), `file`, `duration_s`, `fps`, `width`, `height`, `aspect_ratio`, `codec`, `model`, `settings`, `reference_ids`, `motion_controls`, `seed`, `status`, `failure_reason`, `checksum_sha256`. Includes adapter methods `to_generation_metadata()` and `to_video_qa_input()` for full backward compatibility with Day 1 APIs.
+- **`QAResult` (Output Contract):**
+  Machine-readable evaluation outcome: `qa_id`, `clip_id`, `qa_type` (`TEMPORAL_SEMANTIC`), `component_scores` (`technical`, `temporal`, `artifacts`, `semantic`, `provenance`), `reason_codes`, `decision` (`PASS`, `AUTO_RETRY`, `HUMAN_REVIEW`), and `evidence_files`. Built from `QAReport` via `QAResult.from_qa_report()` or `report.to_contract()`.
+
+### 3. Regression Test Harness (`qa_harness/`)
+- **[qa_harness/runner.py](file:///c:/Video%20Accountabilty/qa_harness/runner.py):** `QAHarnessRunner` loads fixture manifests, executes `VideoQAPipeline`, computes cryptographic SHA-256 hashes, writes machine-readable evidence to `evidence/<fixture_id>_evidence.json`, and records comparison metrics.
+- **[qa_harness/comparator.py](file:///c:/Video%20Accountabilty/qa_harness/comparator.py):** `QAComparator` strictly checks whether actual decision matches expected decision, verifies presence of expected reason codes, and asserts clean controls trigger zero defect codes.
+- **[qa_harness/report.py](file:///c:/Video%20Accountabilty/qa_harness/report.py):** Programmatically writes [QA_REPORT.md](file:///c:/Video%20Accountabilty/QA_REPORT.md) and [TEST_REPORT.md](file:///c:/Video%20Accountabilty/TEST_REPORT.md).
+
+### 4. Fixture Strategy & Clean Controls
+The fixture repository in `mock_data/` contains **59 total fixtures**:
+- **24 Defect Fixtures:**
+  - 10 Temporal (`M8_TEMP_001` - `M8_TEMP_010`): Duplicate frames, dropped frame jumps, luminance flicker, freeze sequences, speed/velocity surges.
+  - 10 Visual Artifacts (`M8_ART_001` - `M8_ART_010`): Single/burst black frames, Gaussian and defocus blur, pixelation/scaling artifacts, text/timecode watermark overlays, corrupted headers and bitstreams.
+  - 4 Technical / Metadata (`M8_TECH_001` - `M8_TECH_004`): Framerate mismatch, resolution mismatch, codec mismatch, duration mismatch.
+- **24 Matching Clean Controls (`M8_CLEAN_001` - `M8_CLEAN_024`):**
+  Generated from identical base media sources without defect injection. Each defect fixture links directly to its clean control via `control_fixture_id`.
+- **11 Preserved Legacy Fixtures:**
+  `good`, `duplicate_frames`, `dropped_frames`, `flicker`, `freeze`, `speed_jump`, `black_frame`, `blur`, `resolution_change`, `text_overlay`, `corrupted_metadata`.
+
+### 5. Technical Validation & SHA-256 Provenance
+- `ffprobe` validates container, streams, width, height, fps, duration, and codec against `ClipMetadata`.
+- Cryptographic SHA-256 hashing is computed on the actual byte stream and verified against `ClipMetadata.checksum_sha256`.
+
+### 6. Semantic Prompt Alignment
+- Deterministic frame extraction feeds representative video frames into OpenAI CLIP ViT-B/32 alongside prompt text.
+- Scores >= 0.22 classify as `PASS`, scores in [0.18, 0.22] trigger `HUMAN_REVIEW` via `SEMANTIC_UNCERTAIN`, and scores < 0.18 trigger `AUTO_RETRY` via `SEMANTIC_LOW_ALIGNMENT`.
+
+### 7. Deterministic Decision Mapping
+| Reason Code | Category | Final Decision |
+|---|---|---|
+| `TEMPORAL_DUPLICATE_FRAMES` | Temporal | `AUTO_RETRY` |
+| `TEMPORAL_FRAME_DROP` | Temporal | `AUTO_RETRY` |
+| `TEMPORAL_FLICKER` | Temporal | `AUTO_RETRY` |
+| `TEMPORAL_FREEZE` | Temporal | `AUTO_RETRY` |
+| `TEMPORAL_MOTION_ANOMALY` | Temporal | `AUTO_RETRY` |
+| `ARTIFACT_BLACK_FRAME` | Artifact | `AUTO_RETRY` |
+| `ARTIFACT_BLUR` | Artifact | `AUTO_RETRY` |
+| `ARTIFACT_RESOLUTION_CHANGE` | Artifact | `AUTO_RETRY` |
+| `ARTIFACT_DECODE_FAILURE` | Artifact | `AUTO_RETRY` |
+| `TECHNICAL_INVALID_MEDIA` | Technical | `AUTO_RETRY` |
+| `SEMANTIC_LOW_ALIGNMENT` | Semantic | `AUTO_RETRY` |
+| `ARTIFACT_TEXT_OVERLAY` | Artifact | `HUMAN_REVIEW` |
+| `TECHNICAL_METADATA_MISMATCH`| Technical | `HUMAN_REVIEW` |
+| `SEMANTIC_UNCERTAIN` | Semantic | `HUMAN_REVIEW` |
+| `PROVENANCE_HASH_FAILURE` | Provenance | `HUMAN_REVIEW` |
+
+### 8. Day 2 Execution Commands
+```powershell
+# 1. Environment diagnostic check
+python -m app.cli --doctor
+
+# 2. Generate all deterministic fixtures, metadata, and manifest
+python mock_data/generate_fixtures.py
+
+# 3. Run full regression test harness across all fixtures
+python -m app.cli regression
+
+# 4. Run threshold calibration
+python mock_data/run_calibration.py
+
+# 5. Run automated test suite
+python -m pytest tests/test_contract.py tests/test_qa_harness.py tests/test_clean_controls.py -v
+```
+
+### 9. Key Reports & Artifact Locations
+- **[QA_REPORT.md](file:///c:/Video%20Accountabilty/QA_REPORT.md):** Complete Day 2 acceptance report with fixture breakdown, detection metrics, and decision distribution.
+- **[TEST_REPORT.md](file:///c:/Video%20Accountabilty/TEST_REPORT.md):** Granular test execution table across all 59 fixtures with input types, expected vs. actual outcomes, reason codes, and evidence file links.
+- **[calibration_report.md](file:///c:/Video%20Accountabilty/calibration_report.md):** Empirical calibration matrix with 100% detection rate and 0.0% clean false-reject rate.
+- **[mock_data/manifest.json](file:///c:/Video%20Accountabilty/mock_data/manifest.json):** Registry of all fixtures with metadata, prompts, controls, and expected decisions.
+- **`evidence/`:** Machine-readable JSON evidence files generated for each execution.
+

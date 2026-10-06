@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_ART_008",
+  "expected_decision": "HUMAN_REVIEW",
+  "expected_reason_codes": [
+    "ARTIFACT_TEXT_OVERLAY"
+  ]
+}

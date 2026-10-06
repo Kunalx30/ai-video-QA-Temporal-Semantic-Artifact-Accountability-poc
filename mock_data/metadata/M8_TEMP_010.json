@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH10_T2V_02",
+  "shot_id": "S01_SH10",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TEMP_010.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 52,
+  "status": "OK",
+  "failure_reason": "Violent multi-frame velocity surge",
+  "checksum_sha256": "0dd41acb2a36a26f13b0b65994536504a03a64b3dbc91e467bd7bcc6c8f36c31"
+}

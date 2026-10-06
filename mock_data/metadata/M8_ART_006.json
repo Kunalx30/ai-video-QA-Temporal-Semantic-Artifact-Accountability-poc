@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH16_T2V_02",
+  "shot_id": "S01_SH16",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_006.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 58,
+  "status": "OK",
+  "failure_reason": "Downsampled scaling artifact with severe aspect distortion",
+  "checksum_sha256": "6934f6026187ef76572791a9c21924608595a8ef5474fa0b764cea04e6efc92d"
+}

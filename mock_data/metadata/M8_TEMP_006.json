@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH06_T2V_02",
+  "shot_id": "S01_SH06",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TEMP_006.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 48,
+  "status": "OK",
+  "failure_reason": "High amplitude strobe lighting flicker spikes",
+  "checksum_sha256": "548f2747ef2c4d6a4c8910d0808e02d9fd5451f47c999319be70deb76f83a9ac"
+}

@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH02_T2V_02",
+  "shot_id": "S01_SH02",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TEMP_002.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 44,
+  "status": "OK",
+  "failure_reason": "Multiple distinct duplicate frame sequences",
+  "checksum_sha256": "849fb04f2e41eb4d3228d0d304664c4eed0517aaaa436b5d94c3a64f4ffb9378"
+}

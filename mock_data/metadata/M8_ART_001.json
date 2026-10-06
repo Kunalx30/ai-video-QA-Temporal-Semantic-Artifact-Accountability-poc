@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH11_T2V_02",
+  "shot_id": "S01_SH11",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_001.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 53,
+  "status": "OK",
+  "failure_reason": "Completely black frames injected",
+  "checksum_sha256": "f74836372a79053ac3ce54cf05618470f29239ede6302154243c98ed037ef2ba"
+}

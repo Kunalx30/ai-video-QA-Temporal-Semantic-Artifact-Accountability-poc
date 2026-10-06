@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH12_T2V_02",
+  "shot_id": "S01_SH12",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_002.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 54,
+  "status": "OK",
+  "failure_reason": "Multiple blackout frame flashes",
+  "checksum_sha256": "cd9019b86092656185a233518a333f9a2aa918ab61ee4353362820d48e6fd782"
+}

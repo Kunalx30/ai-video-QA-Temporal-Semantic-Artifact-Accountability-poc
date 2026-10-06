@@ -1,7 +1,7 @@
 """End-to-end execution pipeline for Member 8 QA Module."""
 
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from app.artifacts import ArtifactDetector
 from app.config import QAConfig
@@ -44,11 +44,18 @@ class VideoQAPipeline:
         video_path: str | Path,
         prompt: str,
         video_id: Optional[str] = None,
-        metadata: Optional[GenerationMetadata] = None,
+        metadata: Optional[Any] = None,
         expected_sha256: Optional[str] = None,
     ) -> QAReport:
         qa_run_id = generate_qa_run_id()
         p = Path(video_path)
+
+        # Support ClipMetadata adapter
+        effective_meta = metadata
+        if metadata is not None and hasattr(metadata, "to_generation_metadata"):
+            effective_meta = metadata.to_generation_metadata()
+            if not expected_sha256 and getattr(metadata, "checksum_sha256", None):
+                expected_sha256 = metadata.checksum_sha256
 
         # 1. Provenance
         prov_result = self.provenance_tracker.track(
@@ -60,7 +67,7 @@ class VideoQAPipeline:
         vid = prov_result.video_id
 
         # 2. Technical Validation
-        tech_result = self.technical_validator.validate(p, expected_meta=metadata, prompt=prompt)
+        tech_result = self.technical_validator.validate(p, expected_meta=effective_meta, prompt=prompt)
 
         # Early exit if file unreadable / technical validation hard failed
         if tech_result.status == CheckStatus.FAIL:

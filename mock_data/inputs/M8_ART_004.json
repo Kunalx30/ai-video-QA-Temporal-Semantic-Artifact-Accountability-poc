@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH14_T2V_02",
+  "shot_id": "S01_SH14",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_004.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 56,
+  "status": "OK",
+  "failure_reason": "Extremely heavy defocus blur destroying image details",
+  "checksum_sha256": "e60d3772db3e2351348b7f434044ac17ba7cb6d0f6e12773101d5dd8ea3bd073"
+}

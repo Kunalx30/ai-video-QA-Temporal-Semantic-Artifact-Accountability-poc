@@ -13,10 +13,13 @@ from app.schemas.results import (
     TemporalResult,
 )
 from app.schemas.report import QAReport
+from app.schemas.contract import ClipMetadata, QAResult
 
 __all__ = [
     "GenerationMetadata",
     "VideoQAInput",
+    "ClipMetadata",
+    "QAResult",
     "CheckStatus",
     "DecisionType",
     "ReasonCode",
@@ -28,3 +31,4 @@ __all__ = [
     "ProvenanceResult",
     "QAReport",
 ]
+

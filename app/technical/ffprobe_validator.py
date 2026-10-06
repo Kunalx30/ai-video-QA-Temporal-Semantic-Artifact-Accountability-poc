@@ -169,6 +169,20 @@ class FFprobeValidator:
             if expected_meta.fps and fps and abs(expected_meta.fps - fps) > 1.0:
                 mismatches.append(f"FPS mismatch: expected {expected_meta.fps}, got {fps}")
 
+            # Check expected codec if specified
+            exp_codec = getattr(expected_meta, "codec", None)
+            if not exp_codec and hasattr(expected_meta, "extra") and expected_meta.extra:
+                exp_codec = expected_meta.extra.get("codec")
+            if exp_codec and video_codec and exp_codec.lower() not in video_codec.lower():
+                mismatches.append(f"Codec mismatch: expected {exp_codec}, got {video_codec}")
+
+            # Check expected duration if specified
+            exp_dur = getattr(expected_meta, "duration_s", None)
+            if not exp_dur and hasattr(expected_meta, "extra") and expected_meta.extra:
+                exp_dur = expected_meta.extra.get("duration_s")
+            if exp_dur is not None and duration_sec is not None and abs(float(exp_dur) - float(duration_sec)) > 0.5:
+                mismatches.append(f"Duration mismatch: expected {exp_dur}s, got {duration_sec}s")
+
             if mismatches:
                 is_warn = True
                 reason_codes.append(ReasonCode.TECHNICAL_METADATA_MISMATCH)

@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_TECH_001",
+  "expected_decision": "HUMAN_REVIEW",
+  "expected_reason_codes": [
+    "TECHNICAL_METADATA_MISMATCH"
+  ]
+}

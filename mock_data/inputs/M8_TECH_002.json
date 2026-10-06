@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH22_T2V_02",
+  "shot_id": "S01_SH22",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TECH_002.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 1280,
+  "height": 720,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 64,
+  "status": "OK",
+  "failure_reason": "Metadata specifies 1280x720, but actual video is 640x360",
+  "checksum_sha256": "c9230c49965d693619a271b933ec9626aa0f879bbdd0f06350b2039eabc04589"
+}

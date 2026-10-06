@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_TEMP_004",
+  "expected_decision": "AUTO_RETRY",
+  "expected_reason_codes": [
+    "TEMPORAL_FRAME_DROP"
+  ]
+}

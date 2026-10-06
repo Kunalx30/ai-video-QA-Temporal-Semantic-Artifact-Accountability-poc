@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH13_T2V_02",
+  "shot_id": "S01_SH13",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_003.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 55,
+  "status": "OK",
+  "failure_reason": "Severe Gaussian blur distortion",
+  "checksum_sha256": "76d756a4fe545178174c2f0d9055b9966ac034cc2a95d64104948033e6f77469"
+}

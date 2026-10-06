@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_ART_002",
+  "expected_decision": "AUTO_RETRY",
+  "expected_reason_codes": [
+    "ARTIFACT_BLACK_FRAME"
+  ]
+}

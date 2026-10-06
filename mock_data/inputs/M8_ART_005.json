@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH15_T2V_02",
+  "shot_id": "S01_SH15",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_005.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 57,
+  "status": "OK",
+  "failure_reason": "Pixelated letterbox resolution artifact",
+  "checksum_sha256": "139d596645f2c83efdeac732fc33cbd7703e686a64935ee6c9890485cc646565"
+}

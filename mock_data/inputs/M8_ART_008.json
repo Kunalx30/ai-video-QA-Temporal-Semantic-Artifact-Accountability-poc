@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH18_T2V_02",
+  "shot_id": "S01_SH18",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_008.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 60,
+  "status": "OK",
+  "failure_reason": "Diagnostic timecode and REC banner overlay",
+  "checksum_sha256": "ed1fc8d4f46bb1d251d22bc354fce08e371b3f985068e5cb8d5b8c8f5484e90f"
+}

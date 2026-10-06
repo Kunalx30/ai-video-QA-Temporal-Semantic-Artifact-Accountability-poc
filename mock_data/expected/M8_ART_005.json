@@ -1,0 +1,7 @@
+{
+  "fixture_id": "M8_ART_005",
+  "expected_decision": "AUTO_RETRY",
+  "expected_reason_codes": [
+    "ARTIFACT_RESOLUTION_CHANGE"
+  ]
+}

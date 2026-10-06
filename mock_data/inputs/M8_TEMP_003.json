@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH03_T2V_02",
+  "shot_id": "S01_SH03",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_TEMP_003.mp4",
+  "duration_s": 1.88,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 45,
+  "status": "OK",
+  "failure_reason": "Abrupt frame discontinuity dropping 15 frames at index 25",
+  "checksum_sha256": "553a124bc23d77b2771a2068295fecb392cc2da6cc805bb63005b499380b8a7a"
+}

@@ -1,0 +1,216 @@
+{
+  "fixture_id": "text_overlay",
+  "clip_id": "CLIP_TEXT_OVERLAY",
+  "video_path": "mock_data/media/text_overlay.mp4",
+  "decision": "HUMAN_REVIEW",
+  "reason_codes": [
+    "ARTIFACT_TEXT_OVERLAY"
+  ],
+  "technical": {
+    "status": "PASS",
+    "width": 640,
+    "height": 360,
+    "fps": 24.0,
+    "duration_seconds": 2.5,
+    "codec": "mpeg4",
+    "evidence": {
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "bit_rate": "364121",
+      "video_stream": {
+        "codec": "mpeg4",
+        "pix_fmt": "yuv420p",
+        "width": 640,
+        "height": 360,
+        "fps": 24.0,
+        "duration": 2.5,
+        "nb_frames": 60
+      },
+      "streams_count": 1,
+      "has_audio": false,
+      "aspect_ratio_evidence": {
+        "requested_aspect_ratio": null,
+        "actual_aspect_ratio": "16:9",
+        "width": 640,
+        "height": 360,
+        "expected_ratio": null,
+        "actual_ratio": 1.7778,
+        "tolerance": 0.02,
+        "matched": true
+      }
+    }
+  },
+  "temporal": {
+    "status": "PASS",
+    "score": 1.0,
+    "evidence": {
+      "duplicate_evidence": {
+        "duplicate_count": 0,
+        "total_pairs": 59,
+        "duplicate_ratio": 0.0,
+        "max_consecutive_duplicates": 0,
+        "affected_frames": []
+      },
+      "freeze_evidence": {
+        "freeze_runs": [],
+        "total_frozen_frames": 0,
+        "freeze_ratio": 0.0
+      },
+      "flicker_evidence": {
+        "flicker_score": 0.102,
+        "mean_second_order_diff": 0.102,
+        "max_second_order_diff": 0.557,
+        "alternating_sign_flips": 0,
+        "affected_frames": []
+      },
+      "drop_evidence": {
+        "median_diff": 0.004,
+        "mean_diff": 0.004,
+        "std_diff": 0.0005,
+        "dropped_frame_candidates": [],
+        "raw_discontinuity_candidates": [],
+        "shot_boundary_candidates": [],
+        "uncertain_candidates": [],
+        "spike_ratios": [],
+        "discontinuity_classifications": []
+      },
+      "motion_anomaly_evidence": {
+        "median_motion_speed": 0.2849,
+        "speed_anomaly_frames": [],
+        "speed_jump_ratios": []
+      },
+      "optical_flow_mode": "basic",
+      "total_frames_analyzed": 60
+    }
+  },
+  "artifacts": {
+    "status": "WARN",
+    "score": null,
+    "evidence": {
+      "black_frame_evidence": {
+        "black_frame_count": 0,
+        "affected_frames": [],
+        "luminance_threshold": 2.0
+      },
+      "blur_evidence": {
+        "mean_blur_score": 71.03,
+        "min_blur_score": 50.03,
+        "blurry_frame_count": 0,
+        "blurry_frames": [],
+        "threshold": 25.0
+      },
+      "resolution_evidence": {
+        "dimension_anomalies": [],
+        "sharpness_step_change_frames": [
+          10
+        ],
+        "base_resolution": "640x360"
+      },
+      "decode_evidence": {
+        "decode_error_count": 0,
+        "corrupt_frames": []
+      },
+      "text_overlay_evidence": {
+        "text_overlay_frames_count": 36,
+        "affected_frames": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39
+        ]
+      }
+    }
+  },
+  "semantic": {
+    "status": "PASS",
+    "score": 0.2227,
+    "evidence": {
+      "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+      "sample_points": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "sampled_frame_indices": [
+        0,
+        15,
+        30,
+        44,
+        59
+      ],
+      "scores_per_frame": [
+        0.2504,
+        0.2038,
+        0.2017,
+        0.2049,
+        0.2528
+      ],
+      "frame_details": [
+        {
+          "frame_index": 0,
+          "timestamp_seconds": 0.0,
+          "similarity_score": 0.2504
+        },
+        {
+          "frame_index": 15,
+          "timestamp_seconds": 0.625,
+          "similarity_score": 0.2038
+        },
+        {
+          "frame_index": 30,
+          "timestamp_seconds": 1.25,
+          "similarity_score": 0.2017
+        },
+        {
+          "frame_index": 44,
+          "timestamp_seconds": 1.833,
+          "similarity_score": 0.2049
+        },
+        {
+          "frame_index": 59,
+          "timestamp_seconds": 2.458,
+          "similarity_score": 0.2528
+        }
+      ],
+      "mean_similarity": 0.2227,
+      "min_similarity": 0.2017,
+      "pass_threshold": 0.22,
+      "uncertain_threshold": 0.18,
+      "model_backend": "real_clip",
+      "model_name": "openai/clip-vit-base-patch32",
+      "device": "cpu"
+    }
+  },
+  "provenance": {
+    "sha256": "72aa7acbf6201dd605c301d5cc7d965f8b4ad387149e940c4ab14143647c8009",
+    "video_id": "CLIP_TEXT_OVERLAY",
+    "qa_run_id": "QA_1791260529_A1B15A0F"
+  }
+}

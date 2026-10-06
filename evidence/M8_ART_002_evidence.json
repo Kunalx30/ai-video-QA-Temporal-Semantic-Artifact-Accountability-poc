@@ -1,0 +1,274 @@
+{
+  "fixture_id": "M8_ART_002",
+  "clip_id": "CLIP_S01_SH12_T2V_02",
+  "video_path": "mock_data/media/M8_ART_002.mp4",
+  "decision": "AUTO_RETRY",
+  "reason_codes": [
+    "ARTIFACT_BLACK_FRAME",
+    "ARTIFACT_BLUR",
+    "ARTIFACT_RESOLUTION_CHANGE"
+  ],
+  "technical": {
+    "status": "PASS",
+    "width": 640,
+    "height": 360,
+    "fps": 24.0,
+    "duration_seconds": 2.5,
+    "codec": "mpeg4",
+    "evidence": {
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "bit_rate": "218252",
+      "video_stream": {
+        "codec": "mpeg4",
+        "pix_fmt": "yuv420p",
+        "width": 640,
+        "height": 360,
+        "fps": 24.0,
+        "duration": 2.5,
+        "nb_frames": 60
+      },
+      "streams_count": 1,
+      "has_audio": false,
+      "aspect_ratio_evidence": {
+        "requested_aspect_ratio": null,
+        "actual_aspect_ratio": "16:9",
+        "width": 640,
+        "height": 360,
+        "expected_ratio": null,
+        "actual_ratio": 1.7778,
+        "tolerance": 0.02,
+        "matched": true
+      }
+    }
+  },
+  "temporal": {
+    "status": "PASS",
+    "score": 1.0,
+    "evidence": {
+      "duplicate_evidence": {
+        "duplicate_count": 2,
+        "total_pairs": 59,
+        "duplicate_ratio": 0.0339,
+        "max_consecutive_duplicates": 1,
+        "affected_frames": [
+          15,
+          39
+        ]
+      },
+      "freeze_evidence": {
+        "freeze_runs": [],
+        "total_frozen_frames": 0,
+        "freeze_ratio": 0.0
+      },
+      "flicker_evidence": {
+        "flicker_score": 12.513,
+        "mean_second_order_diff": 12.513,
+        "max_second_order_diff": 90.572,
+        "alternating_sign_flips": 2,
+        "affected_frames": [
+          17,
+          41
+        ]
+      },
+      "drop_evidence": {
+        "median_diff": 0.0042,
+        "mean_diff": 0.0277,
+        "std_diff": 0.0879,
+        "dropped_frame_candidates": [],
+        "raw_discontinuity_candidates": [
+          14,
+          16,
+          38,
+          40
+        ],
+        "shot_boundary_candidates": [
+          14,
+          16,
+          38,
+          40
+        ],
+        "uncertain_candidates": [],
+        "spike_ratios": [],
+        "discontinuity_classifications": [
+          {
+            "candidate_frame": 14,
+            "previous_frame": 13,
+            "next_frame": 15,
+            "diff_previous_current": 0.3529,
+            "diff_current_next": 0.0,
+            "diff_previous_next": 0.3529,
+            "histogram_similarity": -0.0077,
+            "histogram_similarity_prev_next": -0.0077,
+            "feature_match_count": 0,
+            "classification": "SHOT_BOUNDARY",
+            "confidence": 0.9,
+            "reason": "Scene transition detected: visual discontinuity across shots with color histogram shift and feature drop"
+          },
+          {
+            "candidate_frame": 16,
+            "previous_frame": 15,
+            "next_frame": 17,
+            "diff_previous_current": 0.3535,
+            "diff_current_next": 0.0042,
+            "diff_previous_next": 0.3528,
+            "histogram_similarity": -0.0076,
+            "histogram_similarity_prev_next": -0.0077,
+            "feature_match_count": 0,
+            "classification": "SHOT_BOUNDARY",
+            "confidence": 0.9,
+            "reason": "Scene transition detected: visual discontinuity across shots with color histogram shift and feature drop"
+          },
+          {
+            "candidate_frame": 38,
+            "previous_frame": 37,
+            "next_frame": 39,
+            "diff_previous_current": 0.354,
+            "diff_current_next": 0.0,
+            "diff_previous_next": 0.354,
+            "histogram_similarity": -0.0075,
+            "histogram_similarity_prev_next": -0.0075,
+            "feature_match_count": 0,
+            "classification": "SHOT_BOUNDARY",
+            "confidence": 0.9,
+            "reason": "Scene transition detected: visual discontinuity across shots with color histogram shift and feature drop"
+          },
+          {
+            "candidate_frame": 40,
+            "previous_frame": 39,
+            "next_frame": 41,
+            "diff_previous_current": 0.3546,
+            "diff_current_next": 0.0045,
+            "diff_previous_next": 0.3541,
+            "histogram_similarity": -0.0074,
+            "histogram_similarity_prev_next": -0.0075,
+            "feature_match_count": 0,
+            "classification": "SHOT_BOUNDARY",
+            "confidence": 0.9,
+            "reason": "Scene transition detected: visual discontinuity across shots with color histogram shift and feature drop"
+          }
+        ]
+      },
+      "motion_anomaly_evidence": {
+        "median_motion_speed": 0.2602,
+        "speed_anomaly_frames": [],
+        "speed_jump_ratios": []
+      },
+      "optical_flow_mode": "basic",
+      "total_frames_analyzed": 60
+    }
+  },
+  "artifacts": {
+    "status": "FAIL",
+    "score": null,
+    "evidence": {
+      "black_frame_evidence": {
+        "black_frame_count": 4,
+        "affected_frames": [
+          14,
+          15,
+          38,
+          39
+        ],
+        "luminance_threshold": 2.0
+      },
+      "blur_evidence": {
+        "mean_blur_score": 62.85,
+        "min_blur_score": 0.0,
+        "blurry_frame_count": 4,
+        "blurry_frames": [
+          14,
+          15,
+          38,
+          39
+        ],
+        "threshold": 25.0
+      },
+      "resolution_evidence": {
+        "dimension_anomalies": [],
+        "sharpness_step_change_frames": [
+          10,
+          14,
+          16,
+          38,
+          40
+        ],
+        "base_resolution": "640x360"
+      },
+      "decode_evidence": {
+        "decode_error_count": 0,
+        "corrupt_frames": []
+      },
+      "text_overlay_evidence": {
+        "text_overlay_frames_count": 0,
+        "affected_frames": []
+      }
+    }
+  },
+  "semantic": {
+    "status": "PASS",
+    "score": 0.257,
+    "evidence": {
+      "prompt": "A golden glowing orb traveling smoothly across an evening sky.",
+      "sample_points": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "sampled_frame_indices": [
+        0,
+        15,
+        30,
+        44,
+        59
+      ],
+      "scores_per_frame": [
+        0.2504,
+        0.2566,
+        0.2554,
+        0.2661,
+        0.2565
+      ],
+      "frame_details": [
+        {
+          "frame_index": 0,
+          "timestamp_seconds": 0.0,
+          "similarity_score": 0.2504
+        },
+        {
+          "frame_index": 15,
+          "timestamp_seconds": 0.625,
+          "similarity_score": 0.2566
+        },
+        {
+          "frame_index": 30,
+          "timestamp_seconds": 1.25,
+          "similarity_score": 0.2554
+        },
+        {
+          "frame_index": 44,
+          "timestamp_seconds": 1.833,
+          "similarity_score": 0.2661
+        },
+        {
+          "frame_index": 59,
+          "timestamp_seconds": 2.458,
+          "similarity_score": 0.2565
+        }
+      ],
+      "mean_similarity": 0.257,
+      "min_similarity": 0.2504,
+      "pass_threshold": 0.22,
+      "uncertain_threshold": 0.18,
+      "model_backend": "real_clip",
+      "model_name": "openai/clip-vit-base-patch32",
+      "device": "cpu"
+    }
+  },
+  "provenance": {
+    "sha256": "cd9019b86092656185a233518a333f9a2aa918ab61ee4353362820d48e6fd782",
+    "video_id": "CLIP_S01_SH12_T2V_02",
+    "qa_run_id": "QA_1791260468_B8A7F750"
+  }
+}

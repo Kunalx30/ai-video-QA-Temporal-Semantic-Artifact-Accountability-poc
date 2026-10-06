@@ -1,0 +1,46 @@
+{
+  "fixture_id": "M8_ART_009",
+  "clip_id": "CLIP_S01_SH19_T2V_02",
+  "video_path": "mock_data/media/M8_ART_009.mp4",
+  "decision": "AUTO_RETRY",
+  "reason_codes": [
+    "TECHNICAL_INVALID_MEDIA"
+  ],
+  "technical": {
+    "status": "FAIL",
+    "width": null,
+    "height": null,
+    "fps": null,
+    "duration_seconds": null,
+    "codec": null,
+    "evidence": {
+      "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0000016cc82eb4c0] moov atom not found\nmock_data\\media\\M8_ART_009.mp4: Invalid data found when processing input"
+    }
+  },
+  "temporal": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed; frames could not be extracted"
+    }
+  },
+  "artifacts": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed"
+    }
+  },
+  "semantic": {
+    "status": "SKIPPED",
+    "score": null,
+    "evidence": {
+      "skipped_reason": "Technical validation failed"
+    }
+  },
+  "provenance": {
+    "sha256": "c22376f5170d10f4087f8ffe6aedea6ba23d09190a0a47c2b146a5b8e112027d",
+    "video_id": "CLIP_S01_SH19_T2V_02",
+    "qa_run_id": "QA_1791260495_D7CA6CB5"
+  }
+}

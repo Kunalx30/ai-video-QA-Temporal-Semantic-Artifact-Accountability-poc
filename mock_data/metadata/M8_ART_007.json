@@ -1,0 +1,21 @@
+{
+  "clip_id": "CLIP_S01_SH17_T2V_02",
+  "shot_id": "S01_SH17",
+  "mode": "T2V",
+  "source_type": "MOCK",
+  "file": "mock_data/media/M8_ART_007.mp4",
+  "duration_s": 2.5,
+  "fps": 24.0,
+  "width": 640,
+  "height": 360,
+  "aspect_ratio": "16:9",
+  "codec": "mpeg4",
+  "model": "mock-engine",
+  "settings": {},
+  "reference_ids": [],
+  "motion_controls": {},
+  "seed": 59,
+  "status": "OK",
+  "failure_reason": "Unwanted text overlay watermark across screen",
+  "checksum_sha256": "72aa7acbf6201dd605c301d5cc7d965f8b4ad387149e940c4ab14143647c8009"
+}

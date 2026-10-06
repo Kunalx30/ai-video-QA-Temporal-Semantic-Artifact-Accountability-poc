@@ -111,6 +111,11 @@ def main() -> None:
     qa_parser.add_argument("--prompt", required=False, default="", help="Prompt text")
     qa_parser.add_argument("--json", action="store_true", help="Output JSON result")
 
+    # 'regression' subparser for Day 2 QA Harness
+    regression_parser = subparsers.add_parser("regression", help="Run full regression test harness across mock fixtures")
+    regression_parser.add_argument("--manifest", default="mock_data/manifest.json", help="Path to manifest.json")
+    regression_parser.add_argument("--output-dir", default=".", help="Output directory for QA_REPORT.md and TEST_REPORT.md")
+
     args = parser.parse_args()
 
     if args.doctor:
@@ -120,6 +125,28 @@ def main() -> None:
         from mock_data.generate_fixtures import generate_all_fixtures
         generate_all_fixtures(output_dir=args.output_dir)
         sys.exit(0)
+
+    if args.command == "regression":
+        from qa_harness.runner import QAHarnessRunner
+        from qa_harness.report import write_reports
+
+        runner = QAHarnessRunner()
+        print("Running full regression test harness across fixtures...")
+        run_res = runner.run_all(manifest_path=args.manifest)
+        write_reports(run_res, output_dir=args.output_dir)
+
+        print("========================================")
+        print("QA REGRESSION HARNESS SUMMARY")
+        print("========================================")
+        print(f"Total Fixtures Evaluated : {run_res.total_fixtures}")
+        print(f"Total Passed             : {run_res.total_passed}")
+        print(f"Total Failed             : {run_res.total_failed}")
+        print(f"Defect Detection Rate    : {run_res.detection_rate:.1f}% ({run_res.defect_fixtures_detected}/{run_res.defect_fixtures_total})")
+        print(f"Clean False-Reject Rate  : {run_res.false_reject_rate:.1f}% ({run_res.clean_controls_rejected}/{run_res.clean_controls_total})")
+        print(f"Decisions                : {run_res.decision_distribution}")
+        print("========================================")
+        print("Wrote QA_REPORT.md and TEST_REPORT.md")
+        sys.exit(0 if run_res.total_failed == 0 else 1)
 
     if args.command == "qa":
         if not args.video:
