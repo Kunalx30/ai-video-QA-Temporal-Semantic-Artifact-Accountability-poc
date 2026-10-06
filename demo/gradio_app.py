@@ -2,9 +2,11 @@
 
 import json
 from pathlib import Path
+import sys
 from typing import Any, Dict, List, Optional, Tuple
 import gradio as gr
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from app.pipeline import run_video_qa
 from app.schemas.results import DecisionType
 
